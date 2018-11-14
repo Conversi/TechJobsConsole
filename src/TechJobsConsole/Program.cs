@@ -33,7 +33,7 @@ namespace TechJobsConsole
                 if (actionChoice.Equals("list"))
                 {
                     string columnChoice = GetUserSelection("List", columnChoices);
-
+                    
                     if (columnChoice.Equals("all"))
                     {
                         PrintJobs(JobData.FindAll());
@@ -118,7 +118,21 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
+            //List<Dictionary<string, string>> FindAllList = JobData.FindAll();
+
+            foreach (Dictionary<string, string> dictionary in someJobs)
+            {
+                //if (dictionary.ContainsValue(searchTerm))
+                //{
+                    Console.WriteLine("\n*****");
+                    foreach (KeyValuePair<string, string> pair in dictionary)
+                    {
+                        Console.WriteLine(pair.Key + ":  " + pair.Value);
+                    }
+                    Console.WriteLine("*****");
+                //}
+            }
+            //Console.WriteLine("It would seem that Sir Reginald Douchington III has absconded with your data!");
         }
     }
 }
