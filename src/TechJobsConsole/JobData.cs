@@ -48,9 +48,11 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
+
                 foreach (string key in row.Values)
                 {
-                    bool contains = key.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
+                    string aValue = row[column];
+                    bool contains = aValue.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
 
                     if (contains)
                     {
@@ -58,7 +60,6 @@ namespace TechJobsConsole
                     }
                 }
                 //string aValue = row[column];
-
                 //if (aValue.Contains(value))
                 //{
                 //    jobs.Add(row);
@@ -178,6 +179,8 @@ namespace TechJobsConsole
         {
             LoadData();
 
+            //string nope = "No results";
+
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
@@ -192,7 +195,10 @@ namespace TechJobsConsole
                     }
                 }
             }
-            return jobs;
+            //if (jobs != "")
+                return jobs;
+            //else
+                //return nope;
         }
     }
 }

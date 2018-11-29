@@ -134,7 +134,7 @@ namespace TechJobsConsole
                     Console.WriteLine("*****");
                 //}
             }
-            //Console.WriteLine("It would seem that Sir Reginald Douchington III has absconded with your data!");
+            //Console.WriteLine("It appears that Sir Reginald Douchington III has absconded with your data!");
         }
     }
 }
