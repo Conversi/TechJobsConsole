@@ -69,9 +69,9 @@ namespace TechJobsConsole
                     }
                     else
                     {
-                        searchResults = JobData.FindByValue(columnChoice, searchTerm);
+                        //searchResults = JobData.FindByValue(columnChoice, searchTerm);
 
-                        //searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
                         PrintJobs(searchResults);
                     }
                 }
@@ -124,17 +124,17 @@ namespace TechJobsConsole
         {
             //List<Dictionary<string, string>> FindAllList = JobData.FindAll();
 
+            if (someJobs.Count == 0)
+                Console.WriteLine("No results");
+
             foreach (Dictionary<string, string> dictionary in someJobs)
             {
-                //if (dictionary.ContainsValue(searchTerm))
-                //{
                     Console.WriteLine("\n*****");
                     foreach (KeyValuePair<string, string> pair in dictionary)
                     {
                         Console.WriteLine(pair.Key + ":  " + pair.Value);
                     }
                     Console.WriteLine("*****");
-                //}
             }
             //Console.WriteLine("It appears that Sir Reginald Douchington III has absconded with your data!");
         }

@@ -48,6 +48,7 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
+                bool shouldAddJob = false;
 
                 foreach (string key in row.Values)
                 {
@@ -56,9 +57,12 @@ namespace TechJobsConsole
 
                     if (contains)
                     {
-                        jobs.Add(row);
+                        shouldAddJob = true;
                     }
                 }
+                if (shouldAddJob)
+                    jobs.Add(row);
+
                 //string aValue = row[column];
                 //if (aValue.Contains(value))
                 //{
@@ -183,17 +187,26 @@ namespace TechJobsConsole
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
+            //this FOR LOOP runs for each JOB
             foreach (Dictionary<string, string> row in AllJobs)
             {
+                bool shouldAddJob = false;
+
+                //this FOR LOOP runs for each ATTRIBUTE of the JOB
                 foreach (string key in row.Values)
                 {
                     bool contains = key.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
 
                     if (contains)
                     {
-                        jobs.Add(row);
+                        shouldAddJob = true;
                     }
                 }
+                if (shouldAddJob)
+                {
+                    jobs.Add(row);
+                }
+                
             }
             //if (jobs != "")
                 return jobs;
