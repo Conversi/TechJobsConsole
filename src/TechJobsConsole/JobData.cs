@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading;
+using System.Globalization;
 
 namespace TechJobsConsole
 {
@@ -139,7 +142,7 @@ namespace TechJobsConsole
             return rowValues.ToArray();
 
         }
-        public static List<Dictionary<string, string>> FindByValue(string column, string value)
+        public static List<Dictionary<string, string>> FindByValue(string value)
         {
             LoadData();
 
@@ -147,17 +150,19 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                string aValue = row[column];
-
-                if (aValue.Contains(value))
+                foreach (string key in row.Keys)
                 {
-                    jobs.Add(row);
+                    //string aValue = row[column];
+                    bool contains = key.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                    if (contains)
+                    //if (aValue.Contains(value))
+                    {
+                        jobs.Add(row);
+                    }
                 }
             }
             return jobs;
         }
     }
 }
-
-
-
