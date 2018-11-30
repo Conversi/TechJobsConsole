@@ -63,7 +63,9 @@ namespace TechJobsConsole
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        //Console.WriteLine("Search all fields not yet implemented.");
+                        searchResults = JobData.FindByValue(searchTerm);
+                        PrintJobs(searchResults);
                     }
                     else
                     {
@@ -134,7 +136,7 @@ namespace TechJobsConsole
                     Console.WriteLine("*****");
                 //}
             }
-            //Console.WriteLine("It would seem that Sir Reginald Douchington III has absconded with your data!");
+            //Console.WriteLine("It appears that Sir Reginald Douchington III has absconded with your data!");
         }
     }
 }

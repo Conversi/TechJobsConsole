@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Threading;
-using System.Globalization;
 
 namespace TechJobsConsole
 {
@@ -50,12 +48,22 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                string aValue = row[column];
 
-                if (aValue.Contains(value))
+                foreach (string key in row.Values)
                 {
-                    jobs.Add(row);
+                    string aValue = row[column];
+                    bool contains = aValue.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
+
+                    if (contains)
+                    {
+                        jobs.Add(row);
+                    }
                 }
+                //string aValue = row[column];
+                //if (aValue.Contains(value))
+                //{
+                //    jobs.Add(row);
+                //}
             }
 
             return jobs;
@@ -142,27 +150,58 @@ namespace TechJobsConsole
             return rowValues.ToArray();
 
         }
-        public static List<Dictionary<string, string>> FindByValue(string value)
+        //public static List<Dictionary<string, string>> FindByValue(string value)
+        //{
+        //    LoadData();
+
+        //    List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+        //    Dictionary<string, string> columnChoices = new Dictionary<string, string>();
+        //    columnChoices.Add("core competency", "Skill");
+        //    columnChoices.Add("employer", "Employer");
+        //    columnChoices.Add("location", "Location");
+        //    columnChoices.Add("position type", "Position Type");
+
+        //    foreach (Dictionary<string,string> choice in columnChoices)
+        //    {
+        //        string column = choice.Keys
+        //        foreach (Dictionary<string, string> row in AllJobs)
+        //        {
+        //            string aValue = row[column];
+
+        //            if (aValue.Contains(value))
+        //            {
+        //                jobs.Add(row);
+        //            }
+        //        }
+        //    }
+        //    return jobs;
+        public static List<Dictionary<string, string>> FindByValue(string searchTerm)
         {
             LoadData();
+
+            //string nope = "No results";
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
-                foreach (string key in row.Keys)
+                foreach (string key in row.Values)
                 {
-                    //string aValue = row[column];
-                    bool contains = key.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
+                    bool contains = key.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0;
 
                     if (contains)
-                    //if (aValue.Contains(value))
                     {
                         jobs.Add(row);
                     }
                 }
             }
-            return jobs;
+            //if (jobs != "")
+                return jobs;
+            //else
+                //return nope;
         }
     }
 }
+
+
+
